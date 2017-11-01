@@ -22,10 +22,6 @@ BEGIN {
 
 Cfg
 
-=head1 VERSION
-
-0.1
-
 =head1 DESCRIPTION
 
 Cfg - global access to $cfg
@@ -38,7 +34,7 @@ print $cfg->{DB}->{n};
 
 =head1 HISTORY
 
-Version 0.1: first release; Aug 2017
+Окт 30 17:15:38 MSK 2017
 
 =cut
 

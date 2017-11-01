@@ -1,11 +1,12 @@
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Тестовое задание. Защищенная страница</title>
+    <title>Здравствуйте</title>
+    [% INSERT cmn/head_css.html %]
 </head>
 <body>
-    <h1>Защищенная страница mojolicious</h1>
-    <h4>Для выхода прейдите по <a href="/logout"><b>ссылке</b></a></h4>
+    <h2>Здравствуйте</h2>
+    <b>Для авторизации или регистрации перейдите по <a href="/admin">ссылке</a></b>
+    <br>
+    <small>Число пользователей: [% lib.db_user_count %]</small>
 </body>
 </html>
-

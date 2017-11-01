@@ -4,22 +4,43 @@ use warnings;
 use strict;
 
 use Template;
-
 use Cfg;
 
-sub get_tpl(%);
+use Credis;
+use Lib;
 
-sub get_tpl(%) {
-    my %arg = {}; my ( $tpl, $req, $html ) = ( '', '', '' );
+BEGIN {
+    use Exporter();
+    our ( @ISA, @EXPORT );
+    @ISA    = qw(Exporter);
+    @EXPORT = qw(tpl);
+}
 
-    $tpl = shift;
-    $req = shift;
-    %arg = @_;
-    my $tt = Template->new( { INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} . '/html/tpl/' } ) or die "Tpl error!";
+sub tpl(%);
 
-    $tt->process( $tpl . '.html', \%arg, \$html ) or do { die $tt->error(); return 0; };
+sub tpl(%) {
+    my ($tpl, $req, $html, $tt) = ('', '', '', ''); 	## cleaning for mod_perl
+    my %arg = (); 					## cleaning for mod_perl
 
-    return $html;
+    ($tpl, $req, %arg) = @_;
+
+
+    $arg{lib} = Lib->new();
+
+
+    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} .'/'. $cfg->{PATH}->{tpl} })
+        or die "Tpl error!";
+
+
+    $tt->process($tpl . '.html', \%arg, \$html)
+        or do { die $tt->error(); return 0; };
+
+
+    my $redis = Credis->new( $cfg->{REDIS}->{host_key_incr} );
+
+    print $html . '<h5>А я тут считаю открытия страниц: ' . $redis->incr . '</h5>';
+
+    return 1;
 }
 
 =pod
@@ -30,10 +51,6 @@ sub get_tpl(%) {
 
 Tpl
 
-=head1 VERSION
-
-0.1
-
 =head1 DESCRIPTION
 
 Tpl - simple TT implementation
@@ -42,11 +59,11 @@ Tpl - simple TT implementation
 
 use Tpl;
 
-print get_tpl('board_item');
+print Tpl::get_tpl('board_item');
 
 =head1 HISTORY
 
-Version 0.1: first release; Aug 2017
+Окт 30 17:14:17 MSK 2017
 
 =cut
 

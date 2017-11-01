@@ -1,0 +1,120 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    var theme = 'glacier';
+
+    /*********************************/
+    $(document).ready(function() {
+    /*********************************/
+
+        /** LOGIN FIELDS **/
+
+        $("#Email").jqxInput({"theme": theme, "placeHolder": "Мой логин"});
+        $("#Pass").jqxPasswordInput({"theme": theme, "placeHolder": "Мой пароль"});
+
+
+        /** LOGIN BUTTONS **/
+
+        $("#InBtn").jqxButton({"theme": theme});
+        $("#RegBtn").jqxButton({"theme": theme});
+
+
+        /** LOGIN BUTTONS CLICK EVENT  **/
+
+        $("#InBtn").click(function()  { send_valid_request('');  });
+        $("#RegBtn").click(function() { send_valid_request('register'); });
+
+
+        /** LOGIN FORM VALIDATION  **/
+
+        $("#Form").jqxValidator({ hintType: "tooltip",
+            rules: [
+                { input: "#Email", message: "Обязательно!", action: "keyup, blur", rule: 'required' },
+                { input: "#Pass",  message: "Обязательно!", action: "keyup, blur", rule: 'required' }
+            ]
+        });
+
+
+        /** LOGIN FORM SENDING **/
+
+        $('#Form').on('validationSuccess', function() {
+
+            var req_url;
+            var req_type = $('#ReqType').val();
+
+            if( req_type == '' ){ req_url = ''; } else { req_url = '/'+req_type; }
+
+            /** SEND **/
+
+            var response = $.post(
+                req_url, {
+                    'httpd_username': $('#Email').val(),
+                    'httpd_password': $('#Pass').val()
+                }
+            );
+
+
+            /** SEND. SUCCESS **/
+
+            response.done( function(data, statusText, xhr){
+
+                if( 'register' == req_type ){
+                    debug('Новый аккаунт создан!','success');
+                    send_valid_request('');
+                }
+
+                if( '' == req_type ){
+                    debug('Вход в аккаунт ...   ','success');
+                    document.location.href = "/admin";
+                }
+
+            });
+
+
+            /** SEND. ERROR **/
+
+            response.fail( function(data, stext, xhr){
+
+                if( 'register' == req_type ){
+
+                    if(xhr == 'Conflict')    {
+                        debug('Ошибка создания аккаунта! Логин занят!',   'error');
+                    }
+
+                    if(xhr == 'Bad Request') {
+                        debug('Ошибка создания аккаунта! Плохой запрос!', 'error');
+                    }
+
+                }
+
+                else {
+                    debug('Ошибка входа в систему! Проверте правильность логина / пароля!','error');
+                }
+
+            });
+
+            return false;
+        });
+
+    /*********************************/
+    });
+    /*********************************/
+
+
+    /** SET TYPE VALUE **/
+
+    function send_valid_request( type ) {
+        $('#ReqType').val('');
+        $('#ReqType').val(type);
+        $("#Form").jqxValidator("validate");
+    }
+
+
+    /** UI DEBUG **/
+
+    function debug(data,tpl) {
+        $("#cdebug").html(data);
+        $("#Debug").jqxNotification({"template":tpl});
+        $("#Debug").jqxNotification("open");
+    }
+
+</script>
