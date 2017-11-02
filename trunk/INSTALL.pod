@@ -10,61 +10,24 @@
 
 =head1 НАСТРОЙКА
 
-apt-get install libdigest-sha-perl mcrypt libaprutil1-dbd-pgsql postgresql postgresql-contrib apache2 apache2-bin apache2-data apache2-dev apache2-utils
+ apt-get install libdigest-sha-perl mcrypt libaprutil1-dbd-pgsql postgresql postgresql-contrib apache2 apache2-bin apache2-data apache2-dev apache2-utils
 
 ----------------------------------------------------------------------------
 
 ## pg
-CREATE DATABASE apacheauth;
-CREATE USER apache WITH password 'ooo';
-GRANT ALL privileges ON DATABASE apacheauth TO apache;
+ CREATE DATABASE apacheauth;
+ CREATE USER apache WITH password 'ooo';
+ GRANT ALL privileges ON DATABASE apacheauth TO apache;
 
 ## add to pg_hba.conf
-host    apacheauth      apache          127.0.0.1/32            trust
+ host    apacheauth      apache          127.0.0.1/32            trust
 
 ## pa
 
 ## load dump wm/etc/apacheauth.sql
-sudo -u postgres psql -h 127.0.0.1 -d apacheauth -U apache -f wm/etc/apacheauth.sql
+ sudo -u postgres psql -h 127.0.0.1 -d apacheauth -U apache -f wm/etc/apacheauth.sql
 
 ----------------------------------------------------------------------------
-
-=head2 Apacje modules
-
-cgi_module
-mpm_prefork_module
-request_module
-rewrite_module
-
-deflate_module
-filter_module
-mime_module
-negotiation_module
-
-dbd_module
-
-cache_module
-cache_socache_module
-socache_shmcb_module
-
-auth_basic_module
-auth_form_module
-
-authn_core_module
-authn_dbd_module
-authn_socache_module
-
-authz_core_module
-authz_host_module
-authz_user_module
-
-session_module
-session_cookie_module
-session_crypto_module
-
-reqtimeout_module
-env_module
-setenvif_module
 
 =head1 ИСТОРИЯ
 
