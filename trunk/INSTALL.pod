@@ -7,20 +7,22 @@
 =head3 Установка модулей
 
 apt-get install 
-postgresql
-redis-server
-apache2
-apache2-dev
-apache2-utils
-libapache-dbi-perl
-libapache2-mod-perl2
-libapache2-mod-perl2-dev
-libaprutil1-dbd-pgsql
-libdigest-sha-perl
-libconfig-tiny-perl
-libtemplate-perl
-libredis-perl
-mcrypt
+ postgresql
+ redis-server
+ apache2
+ apache2-dev
+ apache2-utils
+ libapache-dbi-perl
+ libapache2-mod-perl2
+ libapache2-mod-perl2-dev
+ libaprutil1-dbd-pgsql
+ libdigest-sha-perl
+ libconfig-tiny-perl
+ libtemplate-perl
+ libredis-perl
+ mcrypt
+ libdbd-pg-perl
+ libaprutil1-dbd-pgsql
 
 =head3 Создание БД
 
