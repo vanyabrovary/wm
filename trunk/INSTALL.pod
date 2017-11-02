@@ -15,9 +15,12 @@
 ----------------------------------------------------------------------------
 
 ## pg
- CREATE DATABASE apacheauth;
- CREATE USER apache WITH password 'ooo';
- GRANT ALL privileges ON DATABASE apacheauth TO apache;
+  
+  CREATE DATABASE apacheauth;
+ 
+  CREATE USER apache WITH password 'ooo';
+  
+  GRANT ALL privileges ON DATABASE apacheauth TO apache;
 
 ## add to pg_hba.conf
  host    apacheauth      apache          127.0.0.1/32            trust
