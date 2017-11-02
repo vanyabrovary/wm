@@ -16,14 +16,16 @@ apt-get install
  libapache2-mod-perl2
  libapache2-mod-perl2-dev
  libaprutil1-dbd-pgsql
+ libapache2-request-perl
+ libaprutil1-dbd-pgsql
  libdigest-sha-perl
  libconfig-tiny-perl
  libtemplate-perl
  libredis-perl
  mcrypt
  libdbd-pg-perl
- libaprutil1-dbd-pgsql
-
+ liblog-log4perl-perl
+ 
 =head3 Создание БД
 
 CREATE DATABASE apacheauth;
@@ -31,6 +33,16 @@ CREATE DATABASE apacheauth;
 CREATE USER apache WITH password 'ooo';
 
 GRANT ALL privileges ON DATABASE apacheauth TO apache;
+
+CREATE TABLE "pgsql_auth" (
+    "id" serial,
+    "passwd" character varying(255) NOT NULL,
+    "username" character varying(255) NOT NULL,
+    "groups" character varying(255),
+    CONSTRAINT "pgsql_auth_id" PRIMARY KEY ("id"),
+    CONSTRAINT "pgsql_auth_passwd" UNIQUE ("passwd"),
+    CONSTRAINT "pgsql_auth_username" UNIQUE ("username")
+);
 
 =head3 Настройка доступа к БД
 
