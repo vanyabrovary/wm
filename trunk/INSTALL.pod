@@ -2,35 +2,46 @@
 
 =encoding UTF-8
 
-=head1 НАЗВАНИЕ
+=head2 НАЗВАНИЕ
 
 Настройка
 
-=head1 ОПИСАНИЕ
+=head2 ОПИСАНИЕ
 
-=head1 НАСТРОЙКА
+=head2 НАСТРОЙКА
 
- apt-get install libdigest-sha-perl mcrypt libaprutil1-dbd-pgsql postgresql postgresql-contrib apache2 apache2-bin apache2-data apache2-dev apache2-utils libapache2-mod-perl2 libapache2-mod-perl2-dev 
+=head3 Установка модулей
 
-----------------------------------------------------------------------------
+apt-get install 
+postgresql
+redis-server
+apache2
+apache2-dev
+apache2-utils
+libapache-dbi-perl
+libapache2-mod-perl2
+libapache2-mod-perl2-dev
+libaprutil1-dbd-pgsql
+libdigest-sha-perl
+libconfig-tiny-perl
+libtemplate-perl
+libredis-perl
+mcrypt
 
-## pg
-  
-  CREATE DATABASE apacheauth;
- 
-  CREATE USER apache WITH password 'ooo';
-  
-  GRANT ALL privileges ON DATABASE apacheauth TO apache;
+=head3 Создание БД
 
-## add to pg_hba.conf
- host    apacheauth      apache          127.0.0.1/32            trust
+CREATE DATABASE apacheauth;
+CREATE USER apache WITH password 'ooo';
+GRANT ALL privileges ON DATABASE apacheauth TO apache;
 
-## pa
+=head3 Настройка доступа к БД
+host    apacheauth      apache          127.0.0.1/32            trust
 
-## load dump wm/etc/apacheauth.sql
- sudo -u postgres psql -h 127.0.0.1 -d apacheauth -U apache -f wm/etc/apacheauth.sql
+=head3 Настройка apache
 
-----------------------------------------------------------------------------
+Добавить в httpd.conf
+
+Include /var/www/my.host.com/etc/apache2/host.conf
 
 =head1 ИСТОРИЯ
 
