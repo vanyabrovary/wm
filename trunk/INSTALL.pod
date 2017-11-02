@@ -2,12 +2,6 @@
 
 =encoding UTF-8
 
-=head2 НАЗВАНИЕ
-
-Настройка
-
-=head2 ОПИСАНИЕ
-
 =head2 НАСТРОЙКА
 
 =head3 Установка модулей
@@ -31,10 +25,13 @@ mcrypt
 =head3 Создание БД
 
 CREATE DATABASE apacheauth;
+
 CREATE USER apache WITH password 'ooo';
+
 GRANT ALL privileges ON DATABASE apacheauth TO apache;
 
 =head3 Настройка доступа к БД
+
 host    apacheauth      apache          127.0.0.1/32            trust
 
 =head3 Настройка apache
