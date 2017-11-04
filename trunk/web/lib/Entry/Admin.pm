@@ -4,8 +4,8 @@ use warnings;
 use strict;
 
 use Req;
-use Tpl qw/tpl/;
 use Logger;
+use Tpl qw/tpl/;
 use Apache2::Const qw/OK FORBIDDEN/;
 
 sub handler {
@@ -19,6 +19,5 @@ sub handler {
 
     return OK;
 }
-
 
 1;

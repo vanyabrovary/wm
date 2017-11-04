@@ -28,7 +28,7 @@ sub tpl(%) {
     $arg{lib} = Lib->new();
 
 
-    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} .'/'. $cfg->{PATH}->{tpl} })
+    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} . $cfg->{PATH}->{tpl} })
         or die "Tpl error!";
 
 

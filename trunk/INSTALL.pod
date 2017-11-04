@@ -15,12 +15,11 @@
 ----------------------------------------------------------------------------
 
 ## pg
-  
-  CREATE DATABASE apacheauth;
- 
-  CREATE USER apache WITH password 'ooo';
-  
-  GRANT ALL privileges ON DATABASE apacheauth TO apache;
+
+CREATE DATABASE pgsql_auth;
+CREATE USER apache WITH password 'ooo';
+GRANT ALL privileges ON DATABASE pgsql_auth TO apache;
+CREATE TABLE pgsql_auth (id serial, passwd character varying(255) NOT NULL, username character varying(255) NOT NULL, groups character varying(255) default NULL, CONSTRAINT pgsql_auth_id PRIMARY KEY (id), CONSTRAINT pgsql_auth_username_key UNIQUE (username));
 
 ## add to pg_hba.conf
  host    apacheauth      apache          127.0.0.1/32            trust

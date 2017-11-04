@@ -1,6 +1,8 @@
 package Lib;
 
-use latest;
+use warnings;
+use strict;
+
 use DB;
 
 sub new {

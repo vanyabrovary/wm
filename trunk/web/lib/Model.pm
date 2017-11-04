@@ -1,6 +1,6 @@
 package Model;
 
-use warning;
+use warnings;
 use strict;
 use DB;
 
