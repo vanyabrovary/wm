@@ -3,11 +3,13 @@ package Tpl;
 use warnings;
 use strict;
 
+use Req;
+
 use Template;
 use Cfg;
-
-use Credis;
 use Lib;
+
+use Apache2::RequestRec();
 
 BEGIN {
     use Exporter();
@@ -24,22 +26,14 @@ sub tpl(%) {
 
     ($tpl, $req, %arg) = @_;
 
-
     $arg{lib} = Lib->new();
 
+    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} . $cfg->{PATH}->{tpl} }) or die "Tpl error!";
+    $tt->process($tpl . '.html', \%arg, \$html) or do { die $tt->error(); return 0; };
 
-    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} . $cfg->{PATH}->{tpl} })
-        or die "Tpl error!";
-
-
-    $tt->process($tpl . '.html', \%arg, \$html)
-        or do { die $tt->error(); return 0; };
-
-
-    my $redis = Credis->new( $cfg->{REDIS}->{host_key_incr} );
-
-    print $html . '<h5>А я тут считаю открытия страниц: ' . $redis->incr . '</h5>';
-
+    $req->headers_out->set('Content-Length' => length($html));
+    print $html;
+    #  print $html;
     return 1;
 }
 

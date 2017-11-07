@@ -8,7 +8,7 @@ use DB;
 
 #$hour = 3600
 #$day  = 86400
-#$month = 2592000
+#$month = 2592000*3
 
 sub new {
     my $class = shift;
@@ -20,11 +20,7 @@ sub new {
 sub key {
     my $self = shift;
     unless ( $self->{_key} ) {
-
-        if ( $self->{key} ) {
-            $self->{_key} = $cfg->{REDIS}->{host_key} . $self->{key};
-        }
-
+        if ( $self->{key}  ) { $self->{_key} = $cfg->{REDIS}->{host_key} . $self->{key}; }
     }
     return $self->{_key};
 }
@@ -59,6 +55,7 @@ sub set {
 ## reset value for key expire time
 sub set_expire {
     my $self   = shift;
+    
     my $val    = shift;
     my $expire = shift || $self->{expire};
 
@@ -67,6 +64,21 @@ sub set_expire {
     $rdb->del( $self->key );
     $rdb->set( $self->key => $val );
     $rdb->expire( $self->key => $expire );
+}
+
+sub getset_expire {
+    my $self   = shift;
+    
+    my $val    = shift;
+    my $expire = shift || $self->{expire};
+
+    die('NO VALUE FOR GETSET!') unless $val;
+
+    my $getset_val = $rdb->getset( $self->key => $val );
+    $rdb->expire( $self->key => $expire );
+    
+    return $getset_val;
+
 }
 
 =pod
@@ -95,5 +107,4 @@ my $obj = Credis->new();
 
 1;
 
-1;
 

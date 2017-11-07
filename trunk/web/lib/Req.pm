@@ -3,8 +3,9 @@ package Req;
 use warnings;
 use strict;
 
-use Apache2::Request;
-use Apache2::RequestUtil;
+use Apache2::RequestRec();
+use Apache2::Request();
+use Apache2::RequestUtil();
 
 sub params($);
 
