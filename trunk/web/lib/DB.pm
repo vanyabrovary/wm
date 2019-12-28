@@ -14,12 +14,7 @@ BEGIN {
     @ISA    = qw(Exporter);
     @EXPORT = qw($db $rdb);
 
-    our $db = DBI->connect(
-        "dbi:Pg:dbname=" . $cfg->{DB}->{n} . ";host=" . $cfg->{DB}->{h},
-        $cfg->{DB}->{u},
-        $cfg->{DB}->{p},
-        { AutoCommit => 1 }
-    );
+    our $db  = DBI->connect('DBI:mysql:database='  . $cfg->{DB}->{n} . ";host=" . $cfg->{DB}->{h}, $cfg->{DB}->{u}, $cfg->{DB}->{p}, { AutoCommit => 1 } );
 
     our $rdb = Redis->new();
     $rdb->connect( $cfg->{REDIS}->{host}, $cfg->{REDIS}->{port} );

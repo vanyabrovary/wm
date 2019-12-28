@@ -1,4 +1,4 @@
-package Model::PgsqlAuth;
+package Model::Auth;
 
 use warnings;
 use strict;
@@ -6,9 +6,8 @@ use strict;
 use Model;
 our @ISA = qw/Model/;
 
-sub db_table()   { 'pgsql_auth' }
-sub db_columns() { qw/id passwd username groups/ }
-
+sub db_table()   { 'mysql_auth' }
+sub db_columns() { qw/id passwd username/ }
 1;
 
 =pod

@@ -11,7 +11,7 @@ BEGIN {
     our @ISA    = qw( Exporter );
     our @EXPORT = qw( $cfg );
 
-    our $cfg = Config::Tiny->read( $ENV{'DOCUMENT_ROOT'} . '/etc/my.ini' ) or die 'Cant open etc/my.ini';
+    our $cfg = Config::Tiny->read( '/var/www/www.in.ua/etc/my.ini' ) or die 'Cant open etc/my.ini';
 }
 
 =pod
@@ -34,7 +34,7 @@ print $cfg->{DB}->{n};
 
 =head1 HISTORY
 
-Окт 30 17:15:38 MSK 2017
+Oct 30 17:15:38 MSK 2017
 
 =cut
 

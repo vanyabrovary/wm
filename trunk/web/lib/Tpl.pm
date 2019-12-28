@@ -21,19 +21,23 @@ BEGIN {
 sub tpl(%);
 
 sub tpl(%) {
-    my ($tpl, $req, $html, $tt) = ('', '', '', ''); 	## cleaning for mod_perl
-    my %arg = (); 					## cleaning for mod_perl
+    my ($tpl, $req, $html, $tt) = ('', '', '', '');  ## cleaning for mod_perl
+    my %arg = ();                                    ## cleaning for mod_perl
 
     ($tpl, $req, %arg) = @_;
 
     $arg{lib} = Lib->new();
 
-    $tt = Template->new({ INCLUDE_PATH => $ENV{'DOCUMENT_ROOT'} . $cfg->{PATH}->{tpl} }) or die "Tpl error!";
-    $tt->process($tpl . '.html', \%arg, \$html) or do { die $tt->error(); return 0; };
+    $tt = Template->new($cfg->{TT})
+        or die "Tpl error!";
+
+    $tt->process($tpl . '.html', \%arg, \$html)
+        or do { die $tt->error(); return 0; };
 
     $req->headers_out->set('Content-Length' => length($html));
+
     print $html;
-    #  print $html;
+
     return 1;
 }
 

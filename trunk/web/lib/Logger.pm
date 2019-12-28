@@ -2,6 +2,7 @@ package Logger;
 
 use warnings;
 use strict;
+
 use Cfg;
 
 BEGIN {
@@ -25,7 +26,7 @@ BEGIN {
 			log4perl.appender.Syncer.appender   				= Logfile
 		);
 		Log::Log4perl::init_once( \$logs );
-		sub get_cfg()   { $ENV{'DOCUMENT_ROOT'} . $cfg->{PATH}->{log}; }
+		sub get_cfg()   { $cfg->{PATH}->{log}; }
 		sub get_level() { 'ALL, Logfile'; }
 		our $log 	= Log::Log4perl::get_logger("Logger");
 		$SIG{__WARN__}  = sub { $log->warn(@_) };

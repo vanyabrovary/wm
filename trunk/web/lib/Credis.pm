@@ -52,6 +52,12 @@ sub set {
     $rdb->set( $self->key => $val );
 }
 
+sub del {
+    my $self = shift;
+    $rdb->del( $self->key );
+}
+
+
 ## reset value for key expire time
 sub set_expire {
     my $self   = shift;
