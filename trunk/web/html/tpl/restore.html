@@ -1,25 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Вход в систему</title>
+<title>>Не помню пароль</title>
 [% INSERT cmn/head_css.html %]
-[% INSERT cmn/head_js.html %]
+[% INSERT cmn/head_restore_js.html %]
 </head>
 <body>
     <table width="100%">
         <tr>
             <td width="35%">&nbsp;</td>
             <td width="30%">
-                <h1>Вход в систему</h1>
+                <h1>Не помню пароль</h1>
                 <form id="Form">
                     <ul class="form">
                         <li><b>Логин</b>
                         <li><input type="text" id="Email">
-                        <li><b>Пароль</b>
-                        <li><input type="password" id="Pass">
-                        <li><a href="/restore"><small>Не помню пароль</small></a>
-                        <li><input type="button" id="InBtn" value="Войти в систему"> &nbsp; <input type="button" id="RegBtn" value="Создать новый аккаунт">
-
+                        <li><a href="/login"><small>Вход</small></a>
+                        <li><input type="button" id="RestBtn" value="Восстановить">
                     </ul>
                 </form>
                 <input type="hidden" id="ReqType" value=''>

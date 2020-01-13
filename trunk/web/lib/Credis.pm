@@ -3,7 +3,6 @@ package Credis;
 use warnings;
 use strict;
 
-use Cfg;
 use DB;
 
 #$hour = 3600
@@ -20,7 +19,9 @@ sub new {
 sub key {
     my $self = shift;
     unless ( $self->{_key} ) {
-        if ( $self->{key}  ) { $self->{_key} = $cfg->{REDIS}->{host_key} . $self->{key}; }
+        if ( $self->{key}  ) {
+            $self->{_key} = 'home:' . $self->{key};
+        }
     }
     return $self->{_key};
 }
@@ -61,7 +62,7 @@ sub del {
 ## reset value for key expire time
 sub set_expire {
     my $self   = shift;
-    
+
     my $val    = shift;
     my $expire = shift || $self->{expire};
 
@@ -74,7 +75,7 @@ sub set_expire {
 
 sub getset_expire {
     my $self   = shift;
-    
+
     my $val    = shift;
     my $expire = shift || $self->{expire};
 
@@ -82,7 +83,7 @@ sub getset_expire {
 
     my $getset_val = $rdb->getset( $self->key => $val );
     $rdb->expire( $self->key => $expire );
-    
+
     return $getset_val;
 
 }

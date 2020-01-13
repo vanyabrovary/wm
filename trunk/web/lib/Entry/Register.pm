@@ -4,7 +4,7 @@ use latest;
 
 use Req;
 use Tpl qw/tpl/;
-use Logger; 
+use Logger;
 use Model::Auth;
 use Digest::SHA1 qw(sha1_base64);
 use Apache2::Const qw/OK NOT_FOUND HTTP_BAD_REQUEST HTTP_CONFLICT HTTP_EXPECTATION_FAILED/;
@@ -14,28 +14,25 @@ sub handler {
     my $r = shift; $r->content_type('text/html'); my $a = Req::params($r);
 
     if (exists $a->{httpd_username} and exists $a->{httpd_password}) {
+    	$log->debug('register');
 
-	$log->debug('register');
+    	return HTTP_CONFLICT if Model::Auth->load($a->{httpd_username}, 'username');
 
-	return HTTP_CONFLICT if Model::Auth->load($a->{httpd_username}, 'username');
+    	my $mod = Model::Auth->new({
+            'username' => $a->{httpd_username},
+            'passwd'   => '{SHA}'.sha1_base64($a->{httpd_password}).'=',
+            'created'  => 'NOW()',
+            'status'   => 'register'
+    	}); $mod->save();
 
-	my $mod = Model::Auth->new({
-        'username' => $a->{httpd_username}, 
-        'passwd'   => '{SHA}'.sha1_base64($a->{httpd_password}).'=', 
-        'created'  => 'NOW()', 
-        'status'   => 'register' 
-	}); $mod->save();
-
-	return HTTP_EXPECTATION_FAILED unless $mod;
+        return HTTP_EXPECTATION_FAILED unless $mod;
 
         my $redis = Credis->new( 'confirm:'.sha1_base64( $mod->{id}.$mod->{username} ) );
         $redis->set_expire( $mod->{id} , 7200);
-	## send to email her
 
         $log->debug('New user was added to DB.');
 
-	return OK;
-
+        return OK;
     }
 
     elsif( $a->{key} ) {
@@ -57,8 +54,10 @@ sub handler {
             $redis->del;
             $log->debug('active now');
 	        return OK;
-	}
-	$log->debug('user not found');
+	   }
+
+	   $log->debug('user not found');
+
     }
 
 

@@ -3,9 +3,9 @@ package DB;
 use warnings;
 use strict;
 
-use Apache::DBI;
+#use Apache::DBI;
 use DBI;
-use Redis;
+#use Redis;
 use Cfg;
 
 BEGIN {
@@ -14,11 +14,12 @@ BEGIN {
     @ISA    = qw(Exporter);
     @EXPORT = qw($db $rdb);
 
-    our $db  = DBI->connect('DBI:mysql:database='  . $cfg->{DB}->{n} . ";host=" . $cfg->{DB}->{h}, $cfg->{DB}->{u}, $cfg->{DB}->{p}, { AutoCommit => 1 } );
+    our $db = DBI->connect("dbi:Pg:dbname=" . $cfg->{DB}->{n} . ";host=" . $cfg->{DB}->{h}, $cfg->{DB}->{u}, $cfg->{DB}->{p}, { AutoCommit => 1 } );
+#    our $db  = DBI->connect('DBI:mysql:database='  . $cfg->{DB}->{n} . ";host=" . $cfg->{DB}->{h}, $cfg->{DB}->{u}, $cfg->{DB}->{p}, { AutoCommit => 1 } );
 
-    our $rdb = Redis->new();
-    $rdb->connect( $cfg->{REDIS}->{host}, $cfg->{REDIS}->{port} );
-    $rdb->select( $cfg->{REDIS}->{db} )
+#    our $rdb = Redis->new();
+#    $rdb->connect( $cfg->{REDIS}->{host}, $cfg->{REDIS}->{port} );
+#    $rdb->select( $cfg->{REDIS}->{db} )
 
 }
 

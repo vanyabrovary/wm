@@ -11,7 +11,7 @@ BEGIN {
     our @ISA    = qw( Exporter );
     our @EXPORT = qw( $cfg );
 
-    our $cfg = Config::Tiny->read( '/var/www/www.in.ua/etc/my.ini' ) or die 'Cant open etc/my.ini';
+    our $cfg = Config::Tiny->read( '/var/www/web/etc/my.ini' ) or die 'Cant open etc/my.ini';
 }
 
 =pod

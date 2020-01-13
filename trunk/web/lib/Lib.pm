@@ -3,9 +3,9 @@ package Lib;
 use warnings;
 use strict;
 
-use DB;
-use Cfg;
-use Credis;
+#use DB;
+#use Cfg;
+#use Credis;
 
 sub new {
     my $class = shift;
@@ -13,19 +13,19 @@ sub new {
 }
 
 sub db_user_count {
-    my $self = shift;
-
-   # my $h = $db->prepare("SELECT count(username) FROM pgsql_auth");
-   # $h->execute();
-   # my $cnt = $h->fetchrow_array;
-
-   # return $cnt;
+  my $self = shift;
+#  my $h = $db->prepare("SELECT count(username) FROM pgsql_auth");
+#  $h->execute();
+#  my $cnt = $h->fetchrow_array;
+#  return $cnt;
+  return 1;
 }
 
 sub incr {
     my $self  = shift;
-    my $redis = Credis->new( $cfg->{REDIS}->{host_key_incr} );
-    return $redis->incr;
+ #   my $redis = Credis->new( $cfg->{REDIS}->{host_key_incr} );
+#    return $redis->incr;
+    return 1;
 }
 
 

@@ -6,7 +6,7 @@ use strict;
 use Model;
 our @ISA = qw/Model/;
 
-sub db_table()   { 'mysql_auth' }
+sub db_table()   { 'pgsql_auth' }
 sub db_columns() { qw/id passwd username/ }
 1;
 
@@ -30,6 +30,6 @@ print $model->{passwd};
 
 =head1 HISTORY
 
-Ноя  1 16:08:32 EET 2017
+Ноя 1 16:08:32 EET 2017
 
 =cut

@@ -73,21 +73,13 @@
             /** SEND. ERROR **/
 
             response.fail( function(data, stext, xhr){
-
                 if( 'register' == req_type ){
-
-                    if(xhr == 'Conflict')    {
+                    if(409 == data.status)    {
                         debug('Ошибка создания аккаунта! Логин занят!',   'error');
-                    }
-
-                    if(xhr == 'Bad Request') {
+                    } else {
                         debug('Ошибка создания аккаунта! Плохой запрос!', 'error');
                     }
-
-		    /* TODO: HTTP_EXPECTATION_FAILED */
-
                 }
-
                 else {
                     debug('Ошибка входа в систему! Проверте правильность логина / пароля!','error');
                 }

@@ -1,0 +1,29 @@
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script>
+    var theme = 'glacier';
+    $(document).ready(function() {
+        $("#Email").jqxInput({"theme": theme, "placeHolder": "Мой логин"});
+        $("#RestBtn").jqxButton({"theme": theme});
+        $("#RestBtn").click(function() {  $("#Form").jqxValidator("validate"); });
+        $("#Form").jqxValidator({ hintType: "tooltip",
+            rules: [
+                { input: "#Email", message: "Обязательно!", action: "keyup, blur", rule: 'required' },
+            ]
+        });
+        $('#Form').on('validationSuccess', function() {
+            $.post('/restore_send', {
+                'httpd_username': $('#Email').val()
+            }).done( function(data, statusText, xhr){
+                debug('Проверьте почту!','success');
+            }).fail( function(data, stext, xhr){
+                debug('Ошибка восстановления!','error');
+            });
+            return false;
+        });
+    });
+    function debug(data,tpl) {
+        $("#cdebug").html(data);
+        $("#Debug").jqxNotification({"template":tpl});
+        $("#Debug").jqxNotification("open");
+    }
+</script>
