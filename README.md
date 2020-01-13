@@ -8,10 +8,14 @@
 
 ### Используются модули:
 
-mod_auth_form - позволяет использовать HTML форму входа. https://httpd.apache.org/docs/2.4/mod/mod_auth_form.html.
+mod_auth_form - позволяет использовать HTML форму входа. 
 
-mod_dbd       - для подключения к БД из apache. Доступно несколько СУБД.
+mod_dbd       - для подключения к БД из apache. Доступна поддержка популярных СУБД.
 
 mod_authn_dbd - для выполнения аутентификации пользователя в БД из apache.
 
-mod_session   - для сессий и Cookie.
+mod_session   - для сессий и cookies.
+
+### Ссылка на модуль:
+
+https://httpd.apache.org/docs/2.4/mod/mod_auth_form.html
