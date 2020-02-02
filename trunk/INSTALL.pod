@@ -10,7 +10,13 @@
 
 =head1 НАСТРОЙКА
 
- apt-get install libdigest-sha-perl mcrypt libaprutil1-dbd-pgsql postgresql postgresql-contrib apache2 apache2-bin apache2-data apache2-dev apache2-utils libapache2-mod-perl2 libapache2-mod-perl2-dev 
+=head2 Установка Apache, mod_perl
+
+apt-get install apache2 apache2-bin apache2-data apache2-dev apache2-utils libapache2-mod-perl2 libapache2-mod-perl2-dev libapreq2-3 libapache2-mod-apreq2 libapache2-request-perl python-certbot-apache
+
+=head2 Установка postgresql и др. модулей
+
+apt-get install libdigest-sha-perl mcrypt postgresql postgresql-contrib libaprutil1-dbd-pgsql
 
 ----------------------------------------------------------------------------
 
