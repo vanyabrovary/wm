@@ -24,6 +24,8 @@ mcrypt
 postgresql
 postgresql-contrib 
 
+=back
+
 =head3 CentOS7
 
 =over 2
@@ -38,7 +40,8 @@ perl-libapreq2
 httpd-devel
 libapreq2-devel
 mod_perl
-=over
+
+=back
 
 =head3 Apache enabled modules 
 
@@ -54,3 +57,7 @@ LoadModule dbd_module         modules/mod_dbd.so
 LoadModule authn_dbd_module   modules/mod_authn_dbd.so
 LoadModule authz_dbd_module   modules/mod_authz_dbd.so
 LoadModule auth_form_module   modules/mod_auth_form.so
+
+=back
+
+=pod
