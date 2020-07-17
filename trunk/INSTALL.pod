@@ -4,67 +4,43 @@
 
 =head3 Debian
 
-=over 2
-
-=item *
-
-apache2 
-apache2-bin 
-apache2-data 
-apache2-dev 
-apache2-utils 
-libapreq2-3 
-libapache2-mod-perl2 
-libapache2-mod-perl2-dev 
-libapache2-mod-apreq2
-libaprutil1-dbd-pgsql
-libapache2-request-perl
-libdigest-sha-perl
-mcrypt
-postgresql
-postgresql-contrib 
-
-=back
+ apache2 
+ apache2-bin 
+ apache2-data 
+ apache2-dev 
+ apache2-utils 
+ libapreq2-3 
+ libapache2-mod-perl2 
+ libapache2-mod-perl2-dev 
+ libapache2-mod-apreq2
+ libaprutil1-dbd-pgsql
+ libapache2-request-perl
+ libdigest-sha-perl
+ mcrypt
+ postgresql
+ postgresql-contrib 
 
 =head3 CentOS7
-
-=over 2
-
-=item *
-
-yum install 
-httpd
-httpd-tools
-mod_session
-perl-libapreq2
-httpd-devel
-libapreq2-devel
-mod_perl
-
-=back
+ 
+ httpd
+ httpd-tools
+ mod_session
+ perl-libapreq2
+ httpd-devel
+ libapreq2-devel
+ mod_perl
 
 =head3 Apache enabled modules 
 
-=over 2
+ LoadModule alias_module       modules/mod_alias.so
+ LoadModule authn_dbd_module   modules/mod_authn_dbd.so
+ LoadModule authz_dbd_module   modules/mod_authz_dbd.so
+ LoadModule perl_module        modules/mod_perl.so
+ LoadModule apreq_module       modules/mod_apreq2.so
+ LoadModule dbd_module         modules/mod_dbd.so
+ LoadModule authn_dbd_module   modules/mod_authn_dbd.so
+ LoadModule authz_dbd_module   modules/mod_authz_dbd.so
+ LoadModule auth_form_module   modules/mod_auth_form.so
 
-=item *
-LoadModule alias_module       modules/mod_alias.so
-=item *
-LoadModule authn_dbd_module   modules/mod_authn_dbd.so
-=item *
-LoadModule authz_dbd_module   modules/mod_authz_dbd.so
-=item *
-LoadModule perl_module        modules/mod_perl.so
-=item *
-LoadModule apreq_module       modules/mod_apreq2.so
-=item *
-LoadModule dbd_module         modules/mod_dbd.so
-=item *
-LoadModule authn_dbd_module   modules/mod_authn_dbd.so
-=item *
-LoadModule authz_dbd_module   modules/mod_authz_dbd.so
-=item *
-LoadModule auth_form_module   modules/mod_auth_form.so
-
-=back
+=cut
 
