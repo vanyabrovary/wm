@@ -1,5 +1,6 @@
 Debian
 
+
 apt-get install 
 apache2 
 apache2-bin 
@@ -17,6 +18,7 @@ mcrypt
 postgresql
 postgresql-contrib 
 
+
 CentOS7
 
 yum install 
@@ -27,6 +29,9 @@ perl-libapreq2
 httpd-devel
 libapreq2-devel
 mod_perl
+
+
+
 
 Apache enabled modules 
 
