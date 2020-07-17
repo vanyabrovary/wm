@@ -1,7 +1,13 @@
-Debian
+=pod
 
+=encoding UTF-8
 
-apt-get install 
+=head3 Debian
+
+=over 2
+
+=item *
+
 apache2 
 apache2-bin 
 apache2-data 
@@ -18,8 +24,11 @@ mcrypt
 postgresql
 postgresql-contrib 
 
+=head3 CentOS7
 
-CentOS7
+=over 2
+
+=item *
 
 yum install 
 httpd
@@ -30,23 +39,25 @@ httpd-devel
 libapreq2-devel
 mod_perl
 
+=head3 Apache enabled modules 
 
-Apache enabled modules 
+=over 2
 
+=item *
 LoadModule alias_module       modules/mod_alias.so
-
+=item *
 LoadModule authn_dbd_module   modules/mod_authn_dbd.so
-
+=item *
 LoadModule authz_dbd_module   modules/mod_authz_dbd.so
-
+=item *
 LoadModule perl_module        modules/mod_perl.so
-
+=item *
 LoadModule apreq_module       modules/mod_apreq2.so
-
+=item *
 LoadModule dbd_module         modules/mod_dbd.so
-
+=item *
 LoadModule authn_dbd_module   modules/mod_authn_dbd.so
-
+=item *
 LoadModule authz_dbd_module   modules/mod_authz_dbd.so
-
+=item *
 LoadModule auth_form_module   modules/mod_auth_form.so
