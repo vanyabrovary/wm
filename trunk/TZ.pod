@@ -4,7 +4,7 @@
 
 =head3 NAME
 
-Тестовое задание w-m.ru
+Задание
 
 =head3 DESCRIPTION
 
